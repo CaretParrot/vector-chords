@@ -16,38 +16,80 @@
     </head>
 
     <body>
-        <details open>
+        <details>
             <summary>Introduction</summary>
             <button is="chord-button" notes="[0, -5, -8, -12]">A Major: [0, -5, -8, -12]</button>
-            <button is="chord-button" notes="[0, -3, -8, -15]">F# Minor: [0, -3, -8, -15]</button>
+            <button is="chord-button" notes="[0, -3, -8, -15]">F♯ Minor: [0, -3, -8, -15]</button>
             <button is="chord-button" notes="[0, -3, -7, -19]">D Major: [0, -3, -7, -19]</button>
             <button is="chord-button" notes="[-1, -5, -10, -17]">E Major: [-1, -5, -10,
                 -17]</button><br><br>
             <p>These buttons can be clicked to play back a chord where each value in the vector cooresponds to
-                particular note in a 12-tone equal temprement system. These vectors are a representation of chords as
+                particular note in a 12-tone equal temperament system. These vectors are a representation of chords as
                 vectors under a linearization. The linearization
                 is done by setting A4 = 440 and using a formula to convert frequencies into indices that denote the
                 number
                 of semitones the pitch is away from A4.</p><br>
             <p role="math" aria-label="i(h) = 12log_2(h/440)">
-                i(h) = 12log<sub>2</sub>(h/440)
+                <em>i</em>(<em>h</em>) = 12log<sub>2</sub>(<em>h</em>/440)
             </p>
             <p role="math" aria-label="h(i) = 440(2)^{i/12}">
-                h(i) = 440(2)<sup>i/12</sup>
+                <em>h</em>(<em>i</em>) = 440(2)<sup><em>i</em>/12</sup>
             </p>
-            <p>Please note that the A4 = 440 value may be adjusted as needed for different tuning standards.</p><br>
-            <p>The conversion from absolute frequencies to indices is necessary for the chords to satisfy properties of
-                vector spaces.<br><br> For example, chords defined as a vector of their frequencies would not be closed
-                under scalar multiplication, since the zero vector is not included. A chord must contain at least two
-                notes, and having a note with zero frequency is equivalent to not having a note. Converting frequencies to indices resolves much of these issues by naturally allowing for any value to be an index, including non-integer values, which can represent microtones or different tuning systems.</p><br>
-                <p>The sum of two chords is equivalent to adding their cooresponding entries. For example, adding the A major and F# minor chords listed at the top of the page yields the following chord.</p><br>
-                <button is="chord-button" notes="[0, -8, -16, -27]">???: [0, -8, -16, -27]</button>
-                <button is="chord-button" notes="[12, 4, -4, -15]">???: [12, 4, -4, -15]</button><br><br>
-                <p>The second chord vector is simply the first chord transposed up the octave, as the original chord may not play back well on some devices. It's quite a dissonant chord, consisting of an F, F#, C#, and A, spread out across a few octaves. Regardless, it remains within the vector space.</p><br>
-                <p>Multiplying a chord by a scalar multiple is equivalent to multiplying all entries in the vector by the scalar multiple. For example, let's scale the A major chord from earlier by a factor of 2.</p><br>
-                <button is="chord-button" notes="[0, -10, -16, -24]">???: [0, -10, -16, -24]</button>
-                <button is="chord-button" notes="[12, 2, -4, -12]">???: [12, 2, -4, -12]</button><br><br>
-                <p>This chord is also relatively dissonant, consisting of an A, B, F, and another A on top.</p>
+            <p>Here, <em>i</em> denotes the frequency index, which is the difference in semitones between the pitch and
+                A4. <em>h</em> denotes the frequency of the note. When the vector is played back, the indices map
+                bijectively to a frequency, and those frequencies are played back. <em>Please note that the A4 = 440
+                    value may be adjusted as needed for different tuning standards.</em></p><br>
+        </details>
+        <details>
+            <summary>Vector Space Axioms</summary>
+            <p>The conversion from absolute frequencies to indices is necessary for the chords to satisfy properties
+                of
+                vector spaces.<br><br> For example, chords defined as a vector of their frequencies would not be
+                closed
+                under scalar multiplication, since the zero vector is not included. A chord must contain at least
+                two
+                notes, and having a note with zero frequency is equivalent to not having a note. Converting
+                frequencies to indices resolves much of these issues by naturally allowing for any value to be an
+                index, including non-integer values, which can represent microtones or different tuning systems.</p>
+            <br>
+            <p>The sum of two chords is equivalent to adding their cooresponding entries. For example, adding the A
+                major and F# minor chords listed at the top of the page yields the following chord.</p><br>
+            <button is="chord-button" notes="[0, -8, -16, -27]">???: [0, -8, -16, -27]</button>
+            <button is="chord-button" notes="[12, 4, -4, -15]">???: [12, 4, -4, -15]</button><br><br>
+            <p>The second chord vector is simply the first chord transposed up the octave, as the original chord may
+                not play back well on some devices. It's quite a dissonant chord, consisting of an F, F#, C#, and A,
+                spread out across a few octaves. Regardless, it remains within the vector space.</p><br>
+            <p>Multiplying a chord by a scalar multiple is equivalent to multiplying all entries in the vector by
+                the scalar multiple. For example, let's scale the A major chord from earlier by a factor of 2.</p>
+            <br>
+            <button is="chord-button" notes="[0, -10, -16, -24]">???: [0, -10, -16, -24]</button>
+            <button is="chord-button" notes="[12, 2, -4, -12]">???: [12, 2, -4, -12]</button><br><br>
+            <p>This chord is also relatively dissonant, consisting of an A, B, F, and another A on top. Regardless,
+                it remains within the vector space. </p><br>
+            <p>Naturally, the 0 vector exists within this vector space, as the result of all voices union on the same
+                A4.</p><br>
+            <button is="chord-button" notes="[0, 0, 0, 0]">A: [0, 0, 0, 0]</button><br><br>
+            <p>The additive inverse of a chord can simply be found by negating all entries. Adding a chord and its
+                additive inverse
+                together will produce the 0 vector. For example, the E major chord from the introduction and its
+                additive inverse are shown below.</p><br>
+            <button is="chord-button" notes="[-1, -5, -10, -17]">E Major: [-1, -5, -10, -17]</button>
+            <button is="chord-button" notes="[1, 5, 10, 17]">G Minor: [1, 5, 10, 17]</button><br><br>
+            <p>The additive inverse of the E major chord is a G minor chord. In this case, it is first inversion. This also gives a mathematical representation of mirror harmony where A4 is the mirror point.</p><br>
+            <p>The remaining axioms are relatively well defined already, since the properties of scalar multiplication with distribution remains closed, as well as associativity, commutativity, and the identity element.</p>
+        </details>
+        <details open>
+            <summary>Experiments</summary>
+            <p>As mentioned before, the negative chord with respect to A4 can be found by scaling the chord vector by -1. Let's try this with some other chords.</p><br>
+            <button is="chord-button" notes="[-2, -7, -10, -14]">G Major: [-2, -7, -10, -14]</button>
+            <button is="chord-button" notes="[2, 7, 10, 14]">E Minor: [2, 7, 10, 14]</button><br>
+            <button is="chord-button" notes="[1, -8, -16, -23]">B♭ Minor: [1, -8, -16, -23]</button>
+            <button is="chord-button" notes="[-1, 8, 16, 23]">D♭ Major: [-1, 8, 16, 23]</button><br>
+            <button is="chord-button" notes="[1, -2, -5, -8]">C♯dim7: [1, -2, -5, -8]</button>
+            <button is="chord-button" notes="[-1, 2, 5, 8]">G♯dim7: [-1, 2, 5, 8]</button><br>
+            <button is="chord-button" notes="[-2, -6, -10, -14]">Gaug: [-2, -6, -10, -14]</button>
+            <button is="chord-button" notes="[2, 6, 10, 14]">Baug: [2, 6, 10, 14]</button><br><br>
+            <p>A notable detail that can be observed from taking the additive inverse of various chords is that major chords and minor chords are additive inverses of each other. The inverses of augmented and diminished chords, however, are augmented and diminished chords respectively.</p>
         </details>
     </body>
 
