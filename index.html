@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="https://caretparrot.github.io/papaya-salad/Profile Picture.png">
+        <link rel="manifest" href="./manifest.json">
+        <link rel="stylesheet" href="https://caretparrot.github.io/papaya-palettes/default.css">
+        <link rel="stylesheet" href="./style.css">
+        <script src="https://unpkg.com/tone"></script>
+        <script defer src="./script.js"></script>
+        <script defer src="../papaya-salad/components.js"></script>
+        <title>Linear Algebra & Harmony</title>
+    </head>
+
+    <body>
+        <details open>
+            <summary>Introduction</summary>
+            <button is="chord-button" notes="[0, -5, -8, -12]">A Major: [0, -5, -8, -12]</button>
+            <button is="chord-button" notes="[0, -3, -8, -15]">F# Minor: [0, -3, -8, -15]</button>
+            <button is="chord-button" notes="[0, -3, -7, -19]">D Major: [0, -3, -7, -19]</button>
+            <button is="chord-button" notes="[-1, -5, -10, -17]">E Major: [-1, -5, -10,
+                -17]</button><br><br>
+            <p>These buttons can be clicked to play back a chord where each value in the vector cooresponds to
+                particular note in a 12-tone equal temprement system. These vectors are a representation of chords as
+                vectors under a linearization. The linearization
+                is done by setting A4 = 440 and using a formula to convert frequencies into indices that denote the
+                number
+                of semitones the pitch is away from A4.</p><br>
+            <p role="math" aria-label="i(h) = 12log_2(h/440)">
+                i(h) = 12log<sub>2</sub>(h/440)
+            </p>
+            <p role="math" aria-label="h(i) = 440(2)^{i/12}">
+                h(i) = 440(2)<sup>i/12</sup>
+            </p>
+            <p>Please note that the A4 = 440 value may be adjusted as needed for different tuning standards.</p><br>
+            <p>The conversion from absolute frequencies to indices is necessary for the chords to satisfy properties of
+                vector spaces.<br><br> For example, chords defined as a vector of their frequencies would not be closed
+                under scalar multiplication, since the zero vector is not included. A chord must contain at least two
+                notes, and having a note with zero frequency is equivalent to not having a note. Converting frequencies to indices resolves much of these issues by naturally allowing for any value to be an index, including non-integer values, which can represent microtones or different tuning systems.</p><br>
+                <p>The sum of two chords is equivalent to adding their cooresponding entries. For example, adding the A major and F# minor chords listed at the top of the page yields the following chord.</p><br>
+                <button is="chord-button" notes="[0, -8, -16, -27]">???: [0, -8, -16, -27]</button>
+                <button is="chord-button" notes="[12, 4, -4, -15]">???: [12, 4, -4, -15]</button><br><br>
+                <p>The second chord vector is simply the first chord transposed up the octave, as the original chord may not play back well on some devices. It's quite a dissonant chord, consisting of an F, F#, C#, and A, spread out across a few octaves. Regardless, it remains within the vector space.</p><br>
+                <p>Multiplying a chord by a scalar multiple is equivalent to multiplying all entries in the vector by the scalar multiple. For example, let's scale the A major chord from earlier by a factor of 2.</p><br>
+                <button is="chord-button" notes="[0, -10, -16, -24]">???: [0, -10, -16, -24]</button>
+                <button is="chord-button" notes="[12, 2, -4, -12]">???: [12, 2, -4, -12]</button><br><br>
+                <p>This chord is also relatively dissonant, consisting of an A, B, F, and another A on top.</p>
+        </details>
+    </body>
+
+</html>
