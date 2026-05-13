@@ -5,3 +5,7 @@ sup, sub, em, strong {
 p {
     text-align: left;
 }
+
+sub, sup {
+    font-size: calc(var(--base-unit) / 2);
+}
