@@ -6,6 +6,6 @@ p {
     text-align: left;
 }
 
-sub, sup {
-    font-size: calc(var(--base-unit) / 2);
+sub, sup, sup em {
+    font-size: calc(var(--base-unit) * 0.75);
 }
